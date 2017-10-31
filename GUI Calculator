@@ -25,13 +25,16 @@ namespace Calculator
             InitializeComponent();
         }
 
-        // Button Method : These are the numerical buttons that can only be used 
-        // in this calculator. User input from keyboard is disabled.
+        
         private void btnClear_Click(object sender, EventArgs e)
         {
             txtDisplay.Clear();
         }
 
+        // Button Method : These are the numerical buttons from numbers
+        // 0 - 9 that can only be used in this calculator.
+        // User input from keyboard is disabled so that these buttons
+        // are the only functions.
         private void btnZero_Click(object sender, EventArgs e)
         {
             txtDisplay.Text += btnZero.Text;
@@ -106,7 +109,10 @@ namespace Calculator
         bool cosButtonClicked = false;
 
         // Button Method : Addition
-        // Test the testbox to ensure it is not null or empty
+        // One of the Arithmetic Functions
+        // This is used by clicking a first number 
+        // followed by a second one.
+        // Test the testbox to ensure it is not null or empty.
         private void btnPlus_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtDisplay.Text))
@@ -132,7 +138,8 @@ namespace Calculator
         }
 
         // Button Method : Subtraction
-        // Used error trapping to catch if the user use this method as either
+        // One of the Arithmetic Functions
+        // Used error trapping to catch if the user used this method as either
         // for negative sign or subtraction for computation.
         private void btnMinus_Click(object sender, EventArgs e)
         {
@@ -178,6 +185,7 @@ namespace Calculator
         }
 
         // Button Method : Division
+        // One of the Arithmetic Functions
         // Test the testbox to ensure it is not null or empty
         private void btnDivide_Click(object sender, EventArgs e)
         {
@@ -205,6 +213,7 @@ namespace Calculator
         }
 
         // Button Method : Multiplication
+        // One of the Arithmetic Functions
         // Test the testbox to ensure it is not null or empty
         private void btnMult_Click(object sender, EventArgs e)
         {
@@ -232,6 +241,7 @@ namespace Calculator
         }
 
         // Button Method : Calculates the square root of a number
+        // One of the Algebraic Functions
         // Test the testbox to ensure it is not null or empty
         private void btnSqrt_Click(object sender, EventArgs e)
         {
@@ -257,6 +267,7 @@ namespace Calculator
         }
 
         // Button Method : Calculates the cube root of a number
+        // One of the Algebraic Functions
         // Test the testbox to ensure it is not null or empty
         private void btnCubeRt_Click(object sender, EventArgs e)
         {
@@ -283,6 +294,7 @@ namespace Calculator
         }
 
         // Button Method : Calculates the inverse of a number
+        // One of the Algebraic Functions
         // Test the testbox to ensure it is not null or empty
         private void btnInverse_Click(object sender, EventArgs e)
         {
@@ -308,6 +320,7 @@ namespace Calculator
         }
 
         // Button Method : Calculates the tangent of a number
+        // One of the Trigonometric Functions
         // Test the testbox to ensure it is not null or empty
         private void btnTan_Click(object sender, EventArgs e)
         {
@@ -333,6 +346,7 @@ namespace Calculator
         }
 
         // Button Method : Calculates the sin of a number
+        // One of the Trigonometric Functions
         // Test the testbox to ensure it is not null or empty
         private void btnSin_Click(object sender, EventArgs e)
         {
@@ -358,6 +372,7 @@ namespace Calculator
         }
 
         // Button Method : Calculates the cosine of a number
+        // One of the Trigonometric Functions
         // Test the testbox to ensure it is not null or empty
         private void btnCos_Click(object sender, EventArgs e)
         {
@@ -383,7 +398,7 @@ namespace Calculator
             }
         }
 
-        // Button Method : Calculates the results 
+        // Button Method : Calculates the results of the input numbers with operations
         // Test the testbox to ensure it is not null or empty
         // Test the textbox to ensure that the invalid numbers calculated will
         // display an error message.
