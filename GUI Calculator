@@ -1,0 +1,493 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+// Acel Pangindian
+// P445711
+// 27/11/17
+// Assessment Portfolio 1.7 Documentation
+
+// In this assessment activity you will revisit the GUI Calculator AT1.6
+// and update the code with comments, internal and external documentation. 
+
+namespace Calculator
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        // Button Method : These are the numerical buttons that can only be used 
+        // in this calculator. User input from keyboard is disabled.
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Clear();
+        }
+
+        private void btnZero_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text += btnZero.Text;
+        }
+
+        private void btnDecimal_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text += btnDecimal.Text;
+        }
+
+        private void btnOne_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text += btnOne.Text;
+        }
+
+        private void btnTwo_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text += btnTwo.Text;
+        }
+
+        private void btnThree_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text += btnThree.Text;
+        }
+
+        private void btnFour_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text += btnFour.Text;
+        }
+
+        private void btnFive_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text += btnFive.Text;
+        }
+
+        private void btnSix_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text += btnSix.Text;
+        }
+
+        private void btnSeven_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text += btnSeven.Text;
+        }
+
+        private void btnEight_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text += btnEight.Text;
+        }
+
+        private void btnNine_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text += btnNine.Text;
+        }
+
+        double total1 = 0;
+
+        //Mathematical operators
+        bool plusButtonClicked = false;
+        bool minusButtonClicked = false;
+        bool divideButtonClicked = false;
+        bool multiplyButtonClicked = false;
+
+        //Algebraic Operators
+        bool sqrtButtonClicked = false;
+        bool cubertButtonClicked = false;
+        bool invButtonClicked = false;
+
+        //Trigonometric Operators
+        bool tanButtonClicked = false;
+        bool sinButtonClicked = false;
+        bool cosButtonClicked = false;
+
+        // Button Method : Addition
+        // Test the testbox to ensure it is not null or empty
+        private void btnPlus_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtDisplay.Text))
+            {
+                total1 += double.Parse(txtDisplay.Text);
+                txtDisplay.Clear();
+
+                plusButtonClicked = true;
+                minusButtonClicked = false;
+                divideButtonClicked = false;
+                multiplyButtonClicked = false;
+                sqrtButtonClicked = false;
+                cubertButtonClicked = false;
+                invButtonClicked = false;
+                tanButtonClicked = false;
+                sinButtonClicked = false;
+                cosButtonClicked = false;
+            }
+            else
+            {
+                txtDisplay.Clear();
+            }
+        }
+
+        // Button Method : Subtraction
+        // Used error trapping to catch if the user use this method as either
+        // for negative sign or subtraction for computation.
+        private void btnMinus_Click(object sender, EventArgs e)
+        {
+            if (plusButtonClicked == false && minusButtonClicked == false && divideButtonClicked == false
+                    && multiplyButtonClicked == false && sqrtButtonClicked == false && cubertButtonClicked
+                    == false && invButtonClicked == false && tanButtonClicked == false && sinButtonClicked ==
+                    false && cosButtonClicked == false)
+
+                try
+                {
+                    total1 += double.Parse(txtDisplay.Text);
+                    txtDisplay.Clear();
+
+                    plusButtonClicked = false;
+                    minusButtonClicked = true;
+                    divideButtonClicked = false;
+                    multiplyButtonClicked = false;
+                    sqrtButtonClicked = false;
+                    cubertButtonClicked = false;
+                    invButtonClicked = false;
+                    tanButtonClicked = false;
+                    sinButtonClicked = false;
+                    cosButtonClicked = false;
+                }
+
+                catch
+                {
+                    total1 = 0;
+                    txtDisplay.Text += btnMinus.Text;
+                    total1 = 0 - total1;
+                }
+
+            else if (minusButtonClicked == true)
+            {
+                txtDisplay.Clear();
+                txtDisplay.Text += btnMinus.Text;
+            }
+
+            else
+            {
+                txtDisplay.Text += btnMinus.Text;
+            }
+        }
+
+        // Button Method : Division
+        // Test the testbox to ensure it is not null or empty
+        private void btnDivide_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtDisplay.Text))
+            {
+                total1 += double.Parse(txtDisplay.Text);
+                txtDisplay.Clear();
+
+                plusButtonClicked = false;
+                minusButtonClicked = false;
+                divideButtonClicked = true;
+                multiplyButtonClicked = false;
+                sqrtButtonClicked = false;
+                cubertButtonClicked = false;
+                invButtonClicked = false;
+                tanButtonClicked = false;
+                sinButtonClicked = false;
+                cosButtonClicked = false;
+            }
+
+            else
+            {
+                txtDisplay.Clear();
+            }
+        }
+
+        // Button Method : Multiplication
+        // Test the testbox to ensure it is not null or empty
+        private void btnMult_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtDisplay.Text))
+            {
+                total1 += double.Parse(txtDisplay.Text);
+                txtDisplay.Clear();
+
+                plusButtonClicked = false;
+                minusButtonClicked = false;
+                divideButtonClicked = false;
+                multiplyButtonClicked = true;
+                sqrtButtonClicked = false;
+                cubertButtonClicked = false;
+                invButtonClicked = false;
+                tanButtonClicked = false;
+                sinButtonClicked = false;
+                cosButtonClicked = false;
+            }
+
+            else
+            {
+                txtDisplay.Clear();
+            }
+        }
+
+        // Button Method : Calculates the square root of a number
+        // Test the testbox to ensure it is not null or empty
+        private void btnSqrt_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtDisplay.Text))
+            {
+                total1 += double.Parse(txtDisplay.Text);
+
+                plusButtonClicked = false;
+                minusButtonClicked = false;
+                divideButtonClicked = false;
+                multiplyButtonClicked = false;
+                sqrtButtonClicked = true;
+                cubertButtonClicked = false;
+                invButtonClicked = false;
+                tanButtonClicked = false;
+                sinButtonClicked = false;
+                cosButtonClicked = false;
+            }
+            else
+            {
+                txtDisplay.Clear();
+            }
+        }
+
+        // Button Method : Calculates the cube root of a number
+        // Test the testbox to ensure it is not null or empty
+        private void btnCubeRt_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtDisplay.Text))
+            {
+                total1 += double.Parse(txtDisplay.Text);
+
+                plusButtonClicked = false;
+                minusButtonClicked = false;
+                divideButtonClicked = false;
+                multiplyButtonClicked = false;
+                sqrtButtonClicked = false;
+                cubertButtonClicked = true;
+                invButtonClicked = false;
+                tanButtonClicked = false;
+                sinButtonClicked = false;
+                cosButtonClicked = false;
+            }
+
+            else
+            {
+                txtDisplay.Clear();
+            }
+        }
+
+        // Button Method : Calculates the inverse of a number
+        // Test the testbox to ensure it is not null or empty
+        private void btnInverse_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtDisplay.Text))
+            {
+                total1 += double.Parse(txtDisplay.Text);
+
+                plusButtonClicked = false;
+                minusButtonClicked = false;
+                divideButtonClicked = false;
+                multiplyButtonClicked = false;
+                sqrtButtonClicked = false;
+                cubertButtonClicked = false;
+                invButtonClicked = true;
+                tanButtonClicked = false;
+                sinButtonClicked = false;
+                cosButtonClicked = false;
+            }
+            else
+            {
+                txtDisplay.Clear();
+            }
+        }
+
+        // Button Method : Calculates the tangent of a number
+        // Test the testbox to ensure it is not null or empty
+        private void btnTan_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtDisplay.Text))
+            {
+                total1 += double.Parse(txtDisplay.Text);
+
+                plusButtonClicked = false;
+                minusButtonClicked = false;
+                divideButtonClicked = false;
+                multiplyButtonClicked = false;
+                sqrtButtonClicked = false;
+                cubertButtonClicked = false;
+                invButtonClicked = false;
+                tanButtonClicked = true;
+                sinButtonClicked = false;
+                cosButtonClicked = false;
+            }
+            else
+            {
+                txtDisplay.Clear();
+            }
+        }
+
+        // Button Method : Calculates the sin of a number
+        // Test the testbox to ensure it is not null or empty
+        private void btnSin_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtDisplay.Text))
+            {
+                total1 += double.Parse(txtDisplay.Text);
+
+                plusButtonClicked = false;
+                minusButtonClicked = false;
+                divideButtonClicked = false;
+                multiplyButtonClicked = false;
+                sqrtButtonClicked = false;
+                cubertButtonClicked = false;
+                invButtonClicked = false;
+                tanButtonClicked = false;
+                sinButtonClicked = true;
+                cosButtonClicked = false;
+            }
+            else
+            {
+                txtDisplay.Clear();
+            }
+        }
+
+        // Button Method : Calculates the cosine of a number
+        // Test the testbox to ensure it is not null or empty
+        private void btnCos_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtDisplay.Text))
+            {
+                total1 += double.Parse(txtDisplay.Text);
+
+                plusButtonClicked = false;
+                minusButtonClicked = false;
+                divideButtonClicked = false;
+                multiplyButtonClicked = false;
+                sqrtButtonClicked = false;
+                cubertButtonClicked = false;
+                invButtonClicked = false;
+                tanButtonClicked = false;
+                sinButtonClicked = false;
+                cosButtonClicked = true;
+            }
+
+            else
+            {
+                txtDisplay.Clear();
+            }
+        }
+
+        // Button Method : Calculates the results 
+        // Test the testbox to ensure it is not null or empty
+        // Test the textbox to ensure that the invalid numbers calculated will
+        // display an error message.
+        private void btnEquals_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtDisplay.Text))
+            {
+                bool isUndefined = false;
+                double result = 0;
+                if (!isUndefined)
+                {
+                    result = Int32.Parse(txtDisplay.Text);
+                }
+
+                if (plusButtonClicked == true)
+                {
+                    result = MathLib1.Arithmetic.Add(total1, result);
+                }
+                else if (minusButtonClicked == true)
+                {
+                    result = MathLib1.Arithmetic.Sub(total1, result);
+                }
+                else if (divideButtonClicked == true)
+                {
+                    result = MathLib1.Arithmetic.Div(total1, result);
+                }
+                else if (multiplyButtonClicked == true)
+                {
+                    result = MathLib1.Arithmetic.Mult(total1, result);
+                }
+
+
+                else if (sqrtButtonClicked == true)
+                {
+                    result = MathLib2.Algebraic.Sqrt(total1);
+                }
+                else if (cubertButtonClicked == true)
+                {
+                    result = MathLib2.Algebraic.Cubert(total1);
+                }
+                else if (invButtonClicked == true)
+                {
+                    result = MathLib2.Algebraic.Inv(total1);
+                }
+
+
+                else if (tanButtonClicked == true)
+                {
+                    result = MathLib3.Trigonometric.Tan(total1);
+                    double temp = total1 / 90;
+                    if (temp % 1 == 0 && temp % 2 != 0)
+                    {
+                        isUndefined = true;
+                    }
+                }
+                else if (sinButtonClicked == true)
+                {
+                    result = MathLib3.Trigonometric.Sin(total1);
+                }
+                else if (cosButtonClicked == true)
+                {
+                    result = MathLib3.Trigonometric.Cos(total1);
+                    double temp = total1 / 90;
+                    if (temp % 1 == 0 && temp % 2 != 0)
+                    {
+                        result = 0;
+                    }
+                }
+
+                if (isUndefined)
+                {
+                    txtDisplay.Text = "Invalid";
+                }
+                else
+                {
+                    txtDisplay.Text = result.ToString();
+                }
+
+                total1 = 0;
+            }
+            else
+            {
+                txtDisplay.Clear();
+            }
+        }
+
+        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clearToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Clear();
+        }
+
+        // Prompts the user if they want to exit the application or cancel it.
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to quit?", "Exit", MessageBoxButtons.OKCancel) ==
+            DialogResult.OK)
+            {
+                Application.Exit();
+            }
+        }
+    }
+}
